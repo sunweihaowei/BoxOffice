@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tb;
     private ViewPager vp;
     private LinearLayout ll_content;
+    private LinearLayout ll_main;
 
     /*private PullToRefreshView pulltorefreshView;*/
     @Override
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             ll_content.setVisibility(View.VISIBLE);
-
+                            ll_main.setVisibility(View.GONE);
                         }
                     });
 
@@ -126,5 +127,6 @@ public class MainActivity extends AppCompatActivity {
         tb = (TabLayout) findViewById(R.id.tb);
         vp = (ViewPager) findViewById(R.id.vp);
         ll_content = (LinearLayout) findViewById(R.id.ll_content);
+        ll_main = (LinearLayout) findViewById(R.id.ll_main);
     }
 }
