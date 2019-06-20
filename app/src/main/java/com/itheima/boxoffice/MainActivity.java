@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.itheima.boxoffice.Adapter.MyAdapter;
+import com.itheima.boxoffice.Adapter.pagerAdapter;
 import com.itheima.boxoffice.bean.main;
 
 import java.io.IOException;
@@ -39,13 +40,27 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager vp;
     private LinearLayout ll_content;
     private LinearLayout ll_main;
-
+    private pagerAdapter pagerAdapter;
+    private List<View> viewList=new ArrayList<>();
+    private List<String> nameList=new ArrayList<>();
+    private String[] names=new String[]{"饼状图","条形图","线形图"};
     /*private PullToRefreshView pulltorefreshView;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
+            View view=View.inflate(MainActivity.this,R.layout.pie_item,null);
+            viewList.add(view);
+            View view1=View.inflate(MainActivity.this,R.layout.hc_line,null);
+            viewList.add(view1);
+            View view2=View.inflate(MainActivity.this,R.layout.hc_c,null);
+            viewList.add(view2);
+        for (int i=0;i<3;i++){
+            nameList.add(names[i]);
+        }
+
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -90,8 +105,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         getjson();
-    }
 
+        tb.addTab(tb.newTab().setText(nameList.get(0)));
+        tb.addTab(tb.newTab().setText(nameList.get(1)));
+        tb.addTab(tb.newTab().setText(nameList.get(2)));
+
+        pagerAdapter=new pagerAdapter(MainActivity.this,viewList,nameList);
+        vp.setAdapter(pagerAdapter);
+        tb.setupWithViewPager(vp);
+
+
+    }
     private void getjson() {
         new Thread() {
             @Override
@@ -119,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
-
     private void initView() {
         tv_sumBoxOffice = (TextView) findViewById(R.id.tv_sumBoxOffice);
         lv = (ListView) findViewById(R.id.lv);
