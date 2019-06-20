@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.itheima.PullToRefreshView;
+/*import com.itheima.PullToRefreshView;*/
 import com.itheima.boxoffice.Adapter.MyAdapter;
 import com.itheima.boxoffice.bean.main;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private TextView tv_sumBoxOffice;
     private ListView lv;
-    private PullToRefreshView pulltorefreshView;
+    /*private PullToRefreshView pulltorefreshView;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        pulltorefreshView.setOnRefreshListener( new PullToRefreshView.OnRefreshListener() {
+       /* pulltorefreshView.setOnRefreshListener( new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         pulltorefreshView.setRefreshing( false );
                     }
 
-        } );
+        } );*/
         getjson();
     }
     private void getjson() {
@@ -126,6 +126,6 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         tv_sumBoxOffice = (TextView) findViewById( R.id.tv_sumBoxOffice );
         lv = (ListView) findViewById( R.id.lv );
-        pulltorefreshView = (PullToRefreshView) findViewById( R.id.pulltorefreshView );
+        /*pulltorefreshView = (PullToRefreshView) findViewById( R.id.pulltorefreshView );*/
     }
 }
